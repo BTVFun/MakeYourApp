@@ -1,0 +1,46 @@
+contact:error Error: Resend error 403: {"statusCode":403,"message":"The makeyour.app domain is not verified. Please, add and verify your domain on https://resend.com/domains","name":"validation_error"}
+    at sendMailViaResend (webpack-internal:///(rsc)/./lib/mail.ts:25:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/contact/route.ts:67:13)
+    at async C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55778
+    at async eO.execute (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:46527)
+    at async eO.handle (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:57112)
+    at async doRender (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1352:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1574:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1482:28)
+    at async DevServer.renderPageComponent (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1908:24)
+    at async DevServer.renderToResponseImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1946:32)
+    at async DevServer.pipeImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:921:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:817:17)
+    at async C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\lib\router-server.js:173:21)
+    at async handleRequest (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\lib\router-server.js:350:24)
+    at async requestHandlerImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\lib\router-server.js:374:13)
+    at async Server.requestListener (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST /api/contact 500 in 791ms
+contact:error Error: Resend error 403: {"statusCode":403,"message":"The makeyour.app domain is not verified. Please, add and verify your domain on https://resend.com/domains","name":"validation_error"}
+    at sendMailViaResend (webpack-internal:///(rsc)/./lib/mail.ts:25:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/contact/route.ts:67:13)
+    at async C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55778
+    at async eO.execute (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:46527)
+    at async eO.handle (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:57112)
+    at async doRender (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1352:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1574:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1482:28)
+    at async DevServer.renderPageComponent (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1908:24)
+    at async DevServer.renderToResponseImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:1946:32)
+    at async DevServer.pipeImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:921:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\base-server.js:817:17)
+    at async C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\lib\router-server.js:173:21)
+    at async handleRequest (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\lib\router-server.js:350:24)
+    at async requestHandlerImpl (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\lib\router-server.js:374:13)
+    at async Server.requestListener (C:\Users\Aazaa\Documents\MakeYourApp\node_modules\.pnpm\next@14.2.15_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST /api/contact 500 in 193ms

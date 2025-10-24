@@ -8,8 +8,8 @@ export default function PrivacyPage() {
         <p className="text-white/80">
           Nous collectons uniquement les informations nécessaires pour répondre à votre demande et conduire notre collaboration. Les
           données sont conservées de manière sécurisée, ne sont jamais revendues et peuvent être supprimées sur simple demande à{' '}
-          <a href="mailto:makeyourapppgmail.com" className="text-primary hover:underline">
-            makeyourapppgmail.com
+          <a href="mailto:makeyourappp@gmail.com" className="text-primary hover:underline">
+            makeyourappp@gmail.com
           </a>
           .
         </p>

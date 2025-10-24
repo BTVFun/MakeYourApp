@@ -13,8 +13,8 @@ export default function Footer() {
         <div>
           <p className="text-base font-semibold text-white">MakeYourApp</p>
           <p>Agence web · produits sur mesure</p>
-          <a href="mailto:makeyourapppgmail.com" className="mt-2 inline-flex text-primary hover:underline">
-            makeyourapppgmail.com
+          <a href="mailto:makeyourappp@gmail.com" className="mt-2 inline-flex text-primary hover:underline">
+            makeyourappp@gmail.com
           </a>
         </div>
         <nav aria-label="Liens légaux" className="flex flex-col gap-2 text-white/70 sm:flex-row sm:items-center sm:gap-6">

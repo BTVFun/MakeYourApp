@@ -8,6 +8,8 @@ export async function sendMailViaResend({ to, subject, html }: SendMailOptions) 
   const key = process.env.RESEND_API_KEY
   if (!key) throw new Error('RESEND_API_KEY manquant')
 
+  const from = process.env.RESEND_FROM ?? 'MakeYourApp <onboarding@resend.dev>'
+
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -15,7 +17,7 @@ export async function sendMailViaResend({ to, subject, html }: SendMailOptions) 
       Authorization: `Bearer ${key}`,
     },
     body: JSON.stringify({
-      from: 'MakeYourApp <no-reply@makeyour.app>',
+      from,
       to,
       subject,
       html,
