@@ -78,7 +78,10 @@ export default function HomePage() {
               Créez votre app web, simplement.
             </h1>
             <p className="mt-6 text-base text-white/70 sm:text-lg">
-              Brief → App → Déploiement. On s&apos;occupe de tout avec une équipe produit dédiée pour prioriser ce qui compte et livrer vite.
+           Brief → App → Déploiement.<br />
+           Vous souhaitez créer votre propre application, personnelle ou professionnelle ?<br />
+           Notre équipe de développeurs la conçoit sur mesure et la livre rapidement.<br />
+           Contactez-nous par mail pour transformer votre idée en réalité.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Button href="#contact">Commencer</Button>
