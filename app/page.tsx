@@ -104,6 +104,14 @@ export default function HomePage() {
         </section>
 
         <Section id="process" title="Notre approche" subtitle="Un parcours clair en trois étapes pour passer de l’idée à la mise en ligne sans friction.">
+          <div className="mb-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-white/70 sm:text-base max-w-2xl">
+              Besoin d&apos;un accompagnement continu ? Nos forfaits couvrent la maintenance, les sauvegardes et le suivi de vos performances.
+            </p>
+            <Button href="/pricing" variant="secondary" className="whitespace-nowrap" aria-label="Consulter les tarifs de maintenance">
+              Tarifs de maintenance
+            </Button>
+          </div>
           <div className="grid gap-6 md:grid-cols-3">
             {processSteps.map((step) => (
               <Card key={step.title} title={step.title} description={step.description} />

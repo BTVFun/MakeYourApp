@@ -9,7 +9,12 @@ export default function Header() {
         <a href="/" className="text-lg font-semibold tracking-tight text-white transition-colors hover:text-primary">
           MakeYourApp
         </a>
-        <Button href="#contact">Contact</Button>
+        <div className="flex items-center gap-3">
+          <Button href="/about">
+            {'\u00c0 propos de nous'}
+          </Button>
+          <Button href="#contact">Contact</Button>
+        </div>
       </Container>
     </header>
   )

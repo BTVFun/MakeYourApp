@@ -50,15 +50,27 @@ export async function sendViaFormspree(endpoint: string, payload: Record<string,
 }
 
 export function renderLeadHtml(payload: Record<string, unknown>) {
+  const labels: Record<string, string> = {
+    budget: 'Budget',
+    budget_custom: 'Budget (précision)',
+  }
+  const formatKey = (key: string) =>
+    labels[key] ?? key.replace(/_/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2')
+
   const rows = Object.entries(payload)
-    .map(
-      ([key, value]) =>
-        `<tr><td style="padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.08);font-weight:600;text-transform:capitalize;">${escapeHtml(
-          key,
-        )}</td><td style="padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.08);">${escapeHtml(
-          value,
-        )}</td></tr>`,
-    )
+    .filter(([, value]) => {
+      if (value === null || value === undefined) return false
+      if (typeof value === 'string') {
+        return value.trim().length > 0
+      }
+      return true
+    })
+    .map(([key, value]) => {
+      const label = formatKey(key)
+      return `<tr><td style="padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.08);font-weight:600;text-transform:capitalize;">${escapeHtml(
+        label,
+      )}</td><td style="padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.08);">${escapeHtml(value)}</td></tr>`
+    })
     .join('')
 
   return `<!doctype html>

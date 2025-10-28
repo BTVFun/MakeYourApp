@@ -48,18 +48,37 @@ export async function POST(request: NextRequest) {
     const formspreeEndpoint = process.env.FORMSPREE_ENDPOINT
 
     if (resendKey && to) {
-      await sendMailViaResend({
+      const emailResponse = await sendMailViaResend({
         to,
         subject: `[Nouveau lead] ${payload.name} - ${payload.subject}`,
         html: renderLeadHtml(meta),
       })
+      console.log({ status: 'resend:sent', id: emailResponse.id ?? 'n/a', to })
     } else if (formspreeEndpoint) {
       await sendViaFormspree(formspreeEndpoint, meta)
     } else {
-      console.log('contact:fallback', JSON.stringify(meta))
+      console.error(
+        'contact:missing-mail-config',
+        JSON.stringify({
+          hasResendKey: Boolean(resendKey),
+          hasContactTo: Boolean(to),
+          hasFormspree: Boolean(formspreeEndpoint),
+        }),
+      )
+      return NextResponse.json(
+        { ok: false, error: 'Service email non configuré, merci de réessayer plus tard.' },
+        { status: 500 },
+      )
     }
 
-    console.log({ status: 'lead:ok', traceId: tId, email: payload.email, sujet: payload.subject })
+    console.log({
+      status: 'lead:ok',
+      traceId: tId,
+      email: payload.email,
+      sujet: payload.subject,
+      budget: payload.budget,
+      ...(payload.budget_custom ? { budget_custom: payload.budget_custom } : {}),
+    })
     return NextResponse.json({ ok: true })
   } catch (error) {
     console.error('contact:error', error)

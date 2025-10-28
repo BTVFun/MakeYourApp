@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { z } from 'zod'
 import Button from '@/components/Button'
 import { Input } from '@/components/Input'
 import { Select } from '@/components/Select'
 import { Textarea } from '@/components/Textarea'
 import { Checkbox } from '@/components/Checkbox'
-import { ContactFormSchema } from '@/lib/schema'
+import { ContactFormSchema, budgetValues } from '@/lib/schema'
 
 type FieldErrors = Record<string, string>
 
@@ -15,6 +15,7 @@ const subjectOptions = [
   { label: 'Site vitrine', value: 'Site vitrine' },
   { label: 'SaaS simple', value: 'SaaS simple' },
   { label: 'E-commerce', value: 'E-commerce' },
+  { label: 'Utilisation Personnelle', value: 'Utilisation Personnelle' },
   { label: 'Autre', value: 'Autre' },
 ]
 
@@ -25,10 +26,26 @@ const timelineOptions = [
   { label: 'Flexible', value: 'Flexible' },
 ]
 
+const budgetOptions = budgetValues.map((value) => ({
+  label: value,
+  value,
+}))
+
 export default function ContactForm() {
   const [pending, setPending] = useState(false)
   const [message, setMessage] = useState<{ variant: 'success' | 'error'; text: string } | null>(null)
   const [errors, setErrors] = useState<FieldErrors>({})
+  const [budgetChoice, setBudgetChoice] = useState('')
+
+  const customBudgetValue = budgetValues[budgetValues.length - 1]
+  const showCustomBudget = budgetChoice === customBudgetValue
+
+  useEffect(() => {
+    const select = document.querySelector<HTMLSelectElement>('select[name="budget"]')
+    if (select && select.value) {
+      setBudgetChoice(select.value)
+    }
+  }, [])
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -49,6 +66,10 @@ export default function ContactForm() {
       consent: formData.get('consent') === 'on',
     }
 
+    if (typeof raw.budget === 'string') {
+      setBudgetChoice(raw.budget)
+    }
+
     try {
       const parsed = ContactFormSchema.parse(submission)
       setPending(true)
@@ -61,6 +82,7 @@ export default function ContactForm() {
       if (payload.ok) {
         setMessage({ variant: 'success', text: 'Merci, on revient vers vous sous 24h.' })
         form.reset()
+        setBudgetChoice('')
       } else {
         setMessage({ variant: 'error', text: payload.error ?? 'Une erreur est survenue.' })
         if (payload.issues?.fieldErrors) {
@@ -143,6 +165,28 @@ export default function ContactForm() {
           options={timelineOptions}
           error={errors.timeline}
         />
+        <Select
+          label="Budget"
+          name="budget"
+          required
+          defaultValue=""
+          placeholder="Sélectionnez une fourchette"
+          onChange={(event) => setBudgetChoice(event.target.value)}
+          options={budgetOptions}
+          helper="Estimation pour cadrer la proposition."
+          error={errors.budget}
+        />
+        {showCustomBudget && (
+          <Input
+            className="md:col-span-2"
+            label="Budget (précisez)"
+            name="budget_custom"
+            placeholder="Ex : budget mensuel, TJM, autres détails..."
+            maxLength={60}
+            required
+            error={errors.budget_custom}
+          />
+        )}
         <Textarea
           className="md:col-span-2"
           label="Description"
