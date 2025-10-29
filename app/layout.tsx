@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
 
-const siteUrl = 'https://makeyour.app'
+const siteUrl = 'https://makeyourapp.eu'
 const description =
   "Créez votre app web, simplement. Brief → App → Déploiement. On s'occupe de tout avec une équipe produit dédiée."
 
