@@ -13,7 +13,7 @@ export default function Header() {
           <Button href="/about">
             {'\u00c0 propos de nous'}
           </Button>
-          <Button href="#contact">Contact</Button>
+          <Button href="/#contact">Contact</Button>
         </div>
       </Container>
     </header>

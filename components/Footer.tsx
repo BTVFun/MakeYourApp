@@ -20,7 +20,7 @@ export default function Footer() {
           <Link href="/privacy" className="transition hover:text-white">
             Politique de confidentialité
           </Link>
-          <Link href="/contact" className="transition hover:text-white">
+          <Link href="/#contact" className="transition hover:text-white">
             Contact
           </Link>
         </nav>
