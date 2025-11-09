@@ -1,11 +1,12 @@
 import Badge from '@/components/Badge'
 import Button from '@/components/Button'
-import Card from '@/components/Card'
 import ContactForm from '@/components/ContactForm'
 import Container from '@/components/Container'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import Section from '@/components/Section'
+import { Spotlight } from '@/components/ui/spotlight-new'
+import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card'
 
 const trustItems = [
   {
@@ -71,8 +72,20 @@ export default function HomePage() {
       <Header />
       <main>
         <section className="relative overflow-hidden py-20 sm:py-28">
+          <div className="absolute inset-0 -z-10">
+            <Spotlight
+              gradientFirst="radial-gradient(68% 70% at 55% 32%, rgba(124, 58, 237, 0.28) 0%, rgba(124, 58, 237, 0.08) 45%, rgba(124, 58, 237, 0))"
+              gradientSecond="radial-gradient(50% 50% at 50% 50%, rgba(167, 139, 250, 0.24) 0%, rgba(124, 58, 237, 0.08) 70%, transparent 100%)"
+              gradientThird="radial-gradient(50% 50% at 50% 50%, rgba(236, 233, 254, 0.6) 0%, rgba(124, 58, 237, 0.06) 70%, transparent 100%)"
+              translateY={-320}
+              width={620}
+              smallWidth={260}
+              duration={9}
+              xOffset={140}
+            />
+          </div>
           <div className="pointer-events-none absolute inset-x-0 -top-40 h-80 bg-gradient-to-b from-primary/25 to-transparent blur-3xl" />
-          <Container className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
+          <Container className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
             <Badge>Agence web · expertise produit</Badge>
             <h1 className="mt-6 animate-fadeIn text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Créez votre app web, simplement.
@@ -114,7 +127,23 @@ export default function HomePage() {
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {processSteps.map((step) => (
-              <Card key={step.title} title={step.title} description={step.description} />
+              <CardContainer key={step.title} containerClassName="!py-0 w-full" className="h-full w-full">
+                <CardBody className="group/card relative flex !h-full !w-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-6 text-left transition-colors duration-300 group-hover/card:border-primary/30 group-hover/card:bg-white/[0.09]">
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 group-hover/card:opacity-100"
+                    style={{
+                      background: 'radial-gradient(circle at top, rgba(124, 58, 237, 0.25), transparent 65%)',
+                    }}
+                  />
+                  <CardItem translateZ={120} className="relative z-10 text-lg font-semibold text-white">
+                    {step.title}
+                  </CardItem>
+                  <CardItem translateZ={80} className="relative z-10 mt-3 text-sm text-white/70 leading-relaxed">
+                    {step.description}
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
             ))}
           </div>
         </Section>
