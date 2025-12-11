@@ -1,6 +1,6 @@
 .btn,
-.site-cta,
-button {
+button,
+.site-cta {
   appearance: none;
   border: none;
   border-radius: 999px;
@@ -16,11 +16,18 @@ button {
 }
 
 .btn-primary,
-.site-cta,
 button {
   background: linear-gradient(120deg, var(--color-primary), var(--color-sky));
   color: var(--color-white);
   box-shadow: 0 18px 30px rgba(55, 123, 176, 0.3);
+}
+
+.site-cta {
+  background: var(--color-accent);
+  color: var(--color-navy);
+  font-weight: 600;
+  box-shadow: 0 15px 35px rgba(242, 166, 90, 0.35);
+  padding-inline: 1.8rem;
 }
 
 .btn-secondary {
