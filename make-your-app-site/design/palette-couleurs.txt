@@ -1,0 +1,18 @@
+# Palette de couleurs Make Your App
+Source reference: https://coolors.co/0e2433-377bb0-5fa1d6-e3f0fa-f2a65a
+
+Palette principale (hex):
+- #0E2433
+- #377BB0
+- #5FA1D6
+- #E3F0FA
+- #F2A65A
+
+Usage recommande:
+- #0E2433  -> bleu tres fonce pour texte, header, fonds sombres
+- #377BB0  -> bleu principal pour logo, boutons primaires, liens importants
+- #5FA1D6  -> bleu clair pour hover, badges, elements secondaires
+- #E3F0FA  -> bleu tres pale pour fonds de sections, cartes, arriere-plans
+- #F2A65A  -> orange doux pour accents (CTA, elements a mettre en avant)
+
+Note logo: utiliser #377BB0 comme couleur dominante.

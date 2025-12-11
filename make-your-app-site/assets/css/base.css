@@ -1,0 +1,123 @@
+:root {
+  /* Palette issue de design/palette-couleurs.txt */
+  --color-navy: #0e2433;
+  --color-primary: #377bb0;
+  --color-sky: #5fa1d6;
+  --color-pale: #e3f0fa;
+  --color-accent: #f2a65a;
+  --color-white: #ffffff;
+  --color-muted: rgba(14, 36, 51, 0.72);
+
+  --shadow-soft: 0 24px 65px rgba(14, 36, 51, 0.12);
+  --shadow-card: 0 12px 30px rgba(14, 36, 51, 0.08);
+
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+
+  --space-section: clamp(3.5rem, 6vw, 5.5rem);
+  --space-section-tight: clamp(2.5rem, 4vw, 4rem);
+
+  --font-base: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "Space Grotesk", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-base);
+  line-height: 1.65;
+  background: linear-gradient(180deg, rgba(227, 240, 250, 0.9), #ffffff 40%) fixed;
+  color: var(--color-navy);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-sky);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-navy);
+}
+
+p,
+ul,
+ol {
+  margin-bottom: 1.25rem;
+  color: var(--color-muted);
+}
+
+ul,
+ol {
+  padding-left: 1.25rem;
+}
+
+strong {
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
+::selection {
+  background: rgba(95, 161, 214, 0.25);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(95, 161, 214, 0.5);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

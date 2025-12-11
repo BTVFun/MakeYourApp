@@ -1,0 +1,139 @@
+.btn,
+.site-cta,
+button {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  padding: 0.9rem 2.4rem;
+  font-size: 1rem;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.btn-primary,
+.site-cta,
+button {
+  background: linear-gradient(120deg, var(--color-primary), var(--color-sky));
+  color: var(--color-white);
+  box-shadow: 0 18px 30px rgba(55, 123, 176, 0.3);
+}
+
+.btn-secondary {
+  background: rgba(55, 123, 176, 0.1);
+  color: var(--color-primary);
+  border: 1px solid rgba(55, 123, 176, 0.4);
+  box-shadow: none;
+}
+
+.btn-link {
+  padding: 0;
+  border-radius: 0;
+  color: var(--color-primary);
+  font-weight: 600;
+  background: transparent;
+  box-shadow: none;
+}
+
+.btn:hover,
+.site-cta:hover,
+button:hover {
+  transform: translateY(-2px);
+}
+
+.btn-secondary:hover {
+  background: rgba(55, 123, 176, 0.15);
+}
+
+.btn-link:hover {
+  color: var(--color-sky);
+}
+
+.contact-form {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 520px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-field label,
+.form-field .field-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.section-contact label,
+.section-contact .field-label {
+  color: inherit;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  border: 1px solid rgba(14, 36, 51, 0.18);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  background: var(--color-white);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(55, 123, 176, 0.2);
+  outline: none;
+}
+
+.consent-field {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.consent-field input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.25rem;
+}
+
+.form-actions {
+  margin-top: 0.75rem;
+}
+
+.form-status,
+.form-error {
+  font-size: 0.9rem;
+  margin: 0;
+  display: none;
+}
+
+.form-status {
+  color: var(--color-primary);
+}
+
+.form-error {
+  color: #c44536;
+}
+
+.form-control--full {
+  width: 100%;
+}
