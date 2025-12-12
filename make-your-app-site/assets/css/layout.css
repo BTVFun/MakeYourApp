@@ -6,14 +6,20 @@
   color: var(--color-white);
   border-bottom: none;
   box-shadow: none;
-  padding: clamp(1rem, 2.5vw, 1.75rem) 0;
+  padding: clamp(1rem, 2.5vw, 1.75rem) clamp(1rem, 4vw, 3rem);
 }
 
 .site-header .container {
+  width: 100%;
+  margin: 0;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 1.5rem;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.site-logo {
+  justify-self: start;
 }
 
 .site-logo img {
@@ -22,8 +28,10 @@
 
 .site-nav {
   display: flex;
-  justify-content: center;
-  gap: 1.75rem;
+  justify-content: flex-end;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  margin-left: auto;
+  padding-right: clamp(1rem, 4vw, 3rem);
   font-weight: 600;
   font-size: 0.98rem;
   letter-spacing: 0.02em;
@@ -233,6 +241,9 @@
   .site-nav {
     flex-wrap: wrap;
     gap: 0.8rem 1.2rem;
+    justify-content: flex-start;
+    margin-left: 0;
+    padding-right: 0;
   }
 
   .site-cta {
