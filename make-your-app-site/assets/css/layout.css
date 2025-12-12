@@ -1,14 +1,12 @@
 .site-header {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  z-index: 20;
-  background: transparent;
+  z-index: 30;
+  background: var(--color-hero-top);
   color: var(--color-white);
   border-bottom: none;
   box-shadow: none;
-  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1rem, 2.5vw, 1.75rem) 0;
 }
 
 .site-header .container {

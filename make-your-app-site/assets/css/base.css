@@ -8,6 +8,9 @@
   --color-white: #ffffff;
   --color-muted: rgba(14, 36, 51, 0.72);
 
+  --color-hero-top: #081a2f;
+  --gradient-hero: linear-gradient(180deg, var(--color-hero-top) 0%, #0c2f4d 50%, #1f4c73 100%);
+
   --shadow-soft: 0 24px 65px rgba(14, 36, 51, 0.12);
   --shadow-card: 0 12px 30px rgba(14, 36, 51, 0.08);
 
