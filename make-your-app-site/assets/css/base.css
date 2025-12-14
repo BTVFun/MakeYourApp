@@ -46,7 +46,7 @@ body {
   min-height: 100vh;
   font-family: var(--font-base);
   line-height: 1.65;
-  background: linear-gradient(180deg, rgba(227, 240, 250, 0.9), #ffffff 40%) fixed;
+  background: var(--color-white);
   color: var(--color-navy);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

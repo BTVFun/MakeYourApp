@@ -10,20 +10,14 @@
   overflow: hidden;
   isolation: isolate;
   padding: clamp(5rem, 13vw, 8rem) 0 clamp(4.5rem, 9vw, 6rem);
-  background: var(--gradient-hero);
-  box-shadow: inset 0 -60px 120px rgba(5, 18, 37, 0.4);
+  background: var(--color-white);
+  box-shadow: none;
   min-height: 100vh;
   min-height: 100dvh;
 }
 
 .section-hero::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 45%;
-  background: linear-gradient(180deg, rgba(12, 42, 70, 0) 0%, rgba(23, 76, 115, 0.65) 55%, rgba(38, 118, 170, 0.8) 100%);
-  pointer-events: none;
-  z-index: 0;
+  content: none;
 }
 
 .hero-grid {
@@ -48,13 +42,13 @@
   max-width: 13ch;
   font-style: italic;
   font-weight: 600;
-  color: #e8f3ff;
+  color: var(--color-navy);
 }
 
 .hero-description {
   font-size: clamp(1.15rem, 2.3vw, 1.35rem);
   line-height: 1.7;
-  color: rgba(221, 233, 248, 0.9);
+  color: var(--color-muted);
   max-width: 38ch;
   margin-bottom: 1.5rem;
 }
@@ -75,14 +69,7 @@
 }
 
 .hero-visual::after {
-  content: "";
-  position: absolute;
-  inset: auto 10% -12% -5%;
-  height: 40%;
-  background: linear-gradient(90deg, rgba(5, 18, 37, 0.45), transparent);
-  filter: blur(30px);
-  opacity: 0.65;
-  pointer-events: none;
+  content: none;
 }
 
 .hero-visual img {
@@ -95,19 +82,12 @@
 /* APPROCHE ------------------------------------------------------------ */
 .section-approche {
   position: relative;
-  background: linear-gradient(180deg, #f4f9ff 0%, #e3f0fa 65%, #ffffff 100%);
+  background: var(--color-white);
 }
 
 .section-approche::before,
 .section-approche::after {
-  content: "";
-  position: absolute;
-  width: clamp(120px, 15vw, 220px);
-  height: clamp(120px, 15vw, 220px);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(55, 123, 176, 0.16), transparent 58%);
-  filter: blur(8px);
-  pointer-events: none;
+  content: none;
 }
 
 .section-approche::before {
@@ -221,7 +201,7 @@
 }
 
 .approche-summary {
-  background: rgba(227, 240, 250, 0.95);
+  background: var(--color-white);
   border-radius: clamp(1.5rem, 3vw, 2.5rem);
   padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.75rem, 4vw, 3rem);
   box-shadow: 0 25px 70px rgba(14, 36, 51, 0.08);
@@ -287,21 +267,12 @@
 .section-contact {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at 80% 10%, rgba(95, 161, 214, 0.22), transparent 55%),
-    linear-gradient(145deg, #0b1d2c 0%, var(--color-navy) 70%);
+  background: var(--color-white);
 }
 
 .section-contact::before,
 .section-contact::after {
-  content: "";
-  position: absolute;
-  width: clamp(140px, 22vw, 260px);
-  height: clamp(140px, 22vw, 260px);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(55, 123, 176, 0.25), transparent 60%);
-  filter: blur(25px);
-  pointer-events: none;
-  z-index: 0;
+  content: none;
 }
 
 .section-contact::before {
@@ -324,16 +295,16 @@
 }
 
 .section-contact .contact-copy {
-  background: rgba(227, 240, 250, 0.08);
+  background: transparent;
   border-radius: var(--radius-xl);
   padding: clamp(1.75rem, 3vw, 2.75rem);
-  border: 1px solid rgba(227, 240, 250, 0.18);
-  box-shadow: 0 30px 70px rgba(6, 14, 24, 0.55);
+  border: none;
+  box-shadow: none;
 }
 
 .section-contact .contact-copy p,
 .section-contact .contact-copy li {
-  color: rgba(255, 255, 255, 0.85);
+  color: inherit;
 }
 
 .section-contact .contact-copy ul {
@@ -343,33 +314,33 @@
 }
 
 .section-contact .contact-form {
-  background: rgba(8, 18, 33, 0.9);
+  background: transparent;
   border-radius: var(--radius-xl);
   padding: clamp(1.75rem, 3vw, 3rem);
-  border: 1px solid rgba(227, 240, 250, 0.18);
-  box-shadow: 0 40px 85px rgba(5, 10, 20, 0.65);
-  backdrop-filter: blur(18px);
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .section-contact .contact-form input,
 .section-contact .contact-form select,
 .section-contact .contact-form textarea {
-  background: rgba(227, 240, 250, 0.08);
-  border: 1px solid rgba(227, 240, 250, 0.35);
-  color: var(--color-white);
+  background: var(--color-white);
+  border: 1px solid rgba(14, 36, 51, 0.18);
+  color: var(--color-navy);
 }
 
 .section-contact .contact-form input::placeholder,
 .section-contact .contact-form textarea::placeholder {
-  color: rgba(227, 240, 250, 0.6);
+  color: rgba(14, 36, 51, 0.5);
 }
 
 .section-contact .contact-form select {
-  color: var(--color-white);
+  color: var(--color-navy);
 }
 
 .section-contact .contact-form small {
-  color: rgba(227, 240, 250, 0.7);
+  color: var(--color-muted);
 }
 
 .section-contact .btn,
