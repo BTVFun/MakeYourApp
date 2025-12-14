@@ -5,6 +5,28 @@
  */
 
 /* HERO ------------------------------------------------------------ */
+.page-home .site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  color: var(--color-white);
+}
+
+.page-home .site-logo img {
+  filter: brightness(0) invert(1);
+}
+
+.page-home .site-nav a {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.page-home .site-nav a:hover,
+.page-home .site-nav a:focus-visible {
+  color: var(--color-accent);
+}
+
 .section-hero {
   --hero-marquee-height: clamp(3.25rem, 5vw, 4rem);
   padding: 0;
