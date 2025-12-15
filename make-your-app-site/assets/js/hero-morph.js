@@ -1,6 +1,74 @@
 (() => {
+  const MORPH_DURATION_MS = 800;
+  const HOLD_DURATION_MS = 1500;
+
   const prefersReducedMotion = () =>
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function computeUnionBBox(pathStrings) {
+    let minX = Number.POSITIVE_INFINITY;
+    let minY = Number.POSITIVE_INFINITY;
+    let maxX = Number.NEGATIVE_INFINITY;
+    let maxY = Number.NEGATIVE_INFINITY;
+    let found = false;
+
+    pathStrings.forEach((pathString) => {
+      if (!pathString) return;
+      try {
+        const bbox = Snap.path.getBBox(pathString);
+        if (!bbox) return;
+        found = true;
+        minX = Math.min(minX, bbox.x);
+        minY = Math.min(minY, bbox.y);
+        maxX = Math.max(maxX, bbox.x2);
+        maxY = Math.max(maxY, bbox.y2);
+      } catch {
+        return;
+      }
+    });
+
+    if (!found) return null;
+
+    const width = maxX - minX;
+    const height = maxY - minY;
+    return {
+      x: minX,
+      y: minY,
+      x2: maxX,
+      y2: maxY,
+      width,
+      height,
+      cx: minX + width / 2,
+      cy: minY + height / 2,
+    };
+  }
+
+  function scaleStepPathsToMatch(stepPaths, targetPaths, options = {}) {
+    const indices = options.indices ?? [0, 1, 2, 3];
+    const targetBBox = computeUnionBBox(indices.map((i) => targetPaths[i]?.morphPoints ?? null));
+    const sourceBBox = computeUnionBBox(indices.map((i) => stepPaths[i]?.morphPoints ?? null));
+    if (!targetBBox || !sourceBBox) return;
+    if (!Number.isFinite(targetBBox.width) || !Number.isFinite(sourceBBox.width) || sourceBBox.width <= 0) return;
+    if (!Number.isFinite(targetBBox.height) || !Number.isFinite(sourceBBox.height) || sourceBBox.height <= 0) return;
+
+    const scale = targetBBox.width / sourceBBox.width;
+    if (!Number.isFinite(scale) || scale <= 0) return;
+
+    const matrix = new Snap.Matrix();
+    matrix.translate(-sourceBBox.cx, -sourceBBox.cy);
+    matrix.scale(scale, scale);
+    matrix.translate(targetBBox.cx, targetBBox.cy);
+
+    indices.forEach((index) => {
+      const entry = stepPaths[index];
+      if (!entry?.morphPoints) return;
+      try {
+        entry.morphPoints = Snap.path.map(entry.morphPoints, matrix);
+      } catch {
+        return;
+      }
+    });
+  }
 
   function buildMorphArray(block) {
     const morphArray = [[], [], []];
@@ -11,9 +79,12 @@
       paths.forEach((path, index) => {
         const id = path.getAttribute('id');
         if (!id) return;
+        const visibleStep =
+          step === 0 && path.dataset.visibleStep ? Number.parseInt(path.dataset.visibleStep, 10) : null;
         morphArray[step][index] = {
           animation: step === 0 ? Snap.select(`#${id}`) : null,
           morphPoints: path.getAttribute('d'),
+          visibleStep: Number.isFinite(visibleStep) ? visibleStep : null,
         };
       });
     });
@@ -21,30 +92,55 @@
     return morphArray;
   }
 
+  function applyConditionalVisibility(morphArray, stepIndex) {
+    const visibleStep = stepIndex + 1;
+    morphArray[0].forEach((entry) => {
+      if (!entry?.animation || !entry.visibleStep) return;
+      entry.animation.attr({ opacity: entry.visibleStep === visibleStep ? 1 : 0 });
+    });
+  }
+
+  function getMorphPoints(morphArray, stepIndex, iteration) {
+    return (
+      morphArray[stepIndex]?.[iteration]?.morphPoints ??
+      morphArray[0]?.[iteration]?.morphPoints ??
+      null
+    );
+  }
+
   function animationStep1(morphArray, iteration) {
+    applyConditionalVisibility(morphArray, 0);
+    const morphPoints = getMorphPoints(morphArray, 0, iteration);
+    if (!morphArray[0][iteration]?.animation || !morphPoints) return;
     morphArray[0][iteration].animation.animate(
-      { d: morphArray[0][iteration].morphPoints },
-      800,
+      { d: morphPoints },
+      MORPH_DURATION_MS,
       mina.easeinout,
-      () => setTimeout(() => animationStep2(morphArray, iteration), 1500),
+      () => setTimeout(() => animationStep2(morphArray, iteration), HOLD_DURATION_MS),
     );
   }
 
   function animationStep2(morphArray, iteration) {
+    applyConditionalVisibility(morphArray, 1);
+    const morphPoints = getMorphPoints(morphArray, 1, iteration);
+    if (!morphArray[0][iteration]?.animation || !morphPoints) return;
     morphArray[0][iteration].animation.animate(
-      { d: morphArray[1][iteration].morphPoints },
-      800,
+      { d: morphPoints },
+      MORPH_DURATION_MS,
       mina.easeinout,
-      () => setTimeout(() => animationStep3(morphArray, iteration), 1500),
+      () => setTimeout(() => animationStep3(morphArray, iteration), HOLD_DURATION_MS),
     );
   }
 
   function animationStep3(morphArray, iteration) {
+    applyConditionalVisibility(morphArray, 2);
+    const morphPoints = getMorphPoints(morphArray, 2, iteration);
+    if (!morphArray[0][iteration]?.animation || !morphPoints) return;
     morphArray[0][iteration].animation.animate(
-      { d: morphArray[2][iteration].morphPoints },
-      800,
+      { d: morphPoints },
+      MORPH_DURATION_MS,
       mina.easeinout,
-      () => setTimeout(() => animationStep1(morphArray, iteration), 1500),
+      () => setTimeout(() => animationStep1(morphArray, iteration), HOLD_DURATION_MS),
     );
   }
 
@@ -62,6 +158,8 @@
 
     Snap(svg);
     const morphArray = buildMorphArray(block);
+    scaleStepPathsToMatch(morphArray[1], morphArray[0]);
+    applyConditionalVisibility(morphArray, 0);
 
     const tl = gsap.timeline();
     const leftPanel = block.querySelector('.bf-header-animated__panel.left');

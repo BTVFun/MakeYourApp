@@ -1,4 +1,0 @@
-(function($){var initializeBlock=function($block){var stringNumber=$block.find('.bf-marquee__content:first-child').text().length;for(let i=0;i<29;i++){$block.find('.bf-marquee__content:first-child').clone().appendTo($block.find('.bf-marquee__container'))}
-let currentScroll=0;let isScrollingDown=!0;let tween=gsap.to($block.find(".bf-marquee__content"),{xPercent:-100,repeat:-1,duration:stringNumber*0.2,ease:"linear"}).totalProgress(0.5);gsap.set($block.find(".bf-marquee__container"),{xPercent:-50});window.addEventListener("scroll",function(){if(window.pageYOffset>currentScroll){isScrollingDown=!0}else{isScrollingDown=!1}
-gsap.to(tween,{timeScale:isScrollingDown?1:-1});currentScroll=window.pageYOffset})}
-$(document).ready(function(){$('.bf-marquee').each(function(){initializeBlock($(this))})});if(window.acf){window.acf.addAction('render_block_preview/type=bf-marquee',initializeBlock)}})(jQuery)

@@ -1,2 +1,0 @@
-(function($){var initializeBlock=function($block){}
-$(document).ready(function(){$('.bf-portfolio-card').each(function(){initializeBlock($(this))})});if(window.acf){window.acf.addAction('render_block_preview/type=bf-portfolio-card',initializeBlock)}})(jQuery)
