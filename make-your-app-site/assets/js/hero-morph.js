@@ -96,12 +96,10 @@
     return morphArray;
   }
 
-  function applyConditionalVisibility(morphArray, stepIndex) {
-    const visibleStep = stepIndex + 1;
-    morphArray[0].forEach((entry) => {
-      if (!entry?.animation || !entry.visibleStep) return;
-      entry.animation.attr({ opacity: entry.visibleStep === visibleStep ? 1 : 0 });
-    });
+  function getTargetOpacityForStep(morphArray, stepIndex, iteration) {
+    const entry = morphArray[0]?.[iteration];
+    if (!entry?.visibleStep) return null;
+    return entry.visibleStep === stepIndex + 1 ? 1 : 0;
   }
 
   function getMorphPoints(morphArray, stepIndex, iteration) {
@@ -113,11 +111,12 @@
   }
 
   function animationStep1(morphArray, iteration) {
-    applyConditionalVisibility(morphArray, 0);
     const morphPoints = getMorphPoints(morphArray, 0, iteration);
     if (!morphArray[0][iteration]?.animation || !morphPoints) return;
+    const targetOpacity = getTargetOpacityForStep(morphArray, 0, iteration);
+    const attrs = targetOpacity === null ? { d: morphPoints } : { d: morphPoints, opacity: targetOpacity };
     morphArray[0][iteration].animation.animate(
-      { d: morphPoints },
+      attrs,
       MORPH_DURATION_MS,
       mina.easeinout,
       () => setTimeout(() => animationStep2(morphArray, iteration), HOLD_DURATION_MS),
@@ -125,11 +124,12 @@
   }
 
   function animationStep2(morphArray, iteration) {
-    applyConditionalVisibility(morphArray, 1);
     const morphPoints = getMorphPoints(morphArray, 1, iteration);
     if (!morphArray[0][iteration]?.animation || !morphPoints) return;
+    const targetOpacity = getTargetOpacityForStep(morphArray, 1, iteration);
+    const attrs = targetOpacity === null ? { d: morphPoints } : { d: morphPoints, opacity: targetOpacity };
     morphArray[0][iteration].animation.animate(
-      { d: morphPoints },
+      attrs,
       MORPH_DURATION_MS,
       mina.easeinout,
       () => setTimeout(() => animationStep3(morphArray, iteration), HOLD_DURATION_MS),
@@ -137,11 +137,12 @@
   }
 
   function animationStep3(morphArray, iteration) {
-    applyConditionalVisibility(morphArray, 2);
     const morphPoints = getMorphPoints(morphArray, 2, iteration);
     if (!morphArray[0][iteration]?.animation || !morphPoints) return;
+    const targetOpacity = getTargetOpacityForStep(morphArray, 2, iteration);
+    const attrs = targetOpacity === null ? { d: morphPoints } : { d: morphPoints, opacity: targetOpacity };
     morphArray[0][iteration].animation.animate(
-      { d: morphPoints },
+      attrs,
       MORPH_DURATION_MS,
       mina.easeinout,
       () => setTimeout(() => animationStep1(morphArray, iteration), HOLD_DURATION_MS),
@@ -163,7 +164,13 @@
     Snap(svg);
     const morphArray = buildMorphArray(block);
     scaleStepPathsToMatch(morphArray[1], morphArray[0]);
-    applyConditionalVisibility(morphArray, 0);
+
+    morphArray[0].forEach((entry, index) => {
+      if (!entry?.animation) return;
+      const opacity = getTargetOpacityForStep(morphArray, 0, index);
+      if (opacity === null) return;
+      entry.animation.attr({ opacity });
+    });
 
     const tl = gsap.timeline();
     const leftPanel = block.querySelector('.bf-header-animated__panel.left');
