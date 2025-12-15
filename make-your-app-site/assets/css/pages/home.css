@@ -48,6 +48,12 @@
   justify-content: center;
   overflow: hidden;
   isolation: isolate;
+  background-color: var(--color-navy);
+  background-image: radial-gradient(1100px circle at 18% 18%, rgba(55, 123, 176, 0.45) 0%, rgba(55, 123, 176, 0) 60%),
+    radial-gradient(900px circle at 82% 22%, rgba(95, 161, 214, 0.32) 0%, rgba(95, 161, 214, 0) 58%),
+    radial-gradient(950px circle at 55% 72%, rgba(242, 166, 90, 0.18) 0%, rgba(242, 166, 90, 0) 62%),
+    radial-gradient(1000px circle at 72% 88%, rgba(227, 240, 250, 0.1) 0%, rgba(227, 240, 250, 0) 65%),
+    var(--gradient-hero);
 }
 
 .bf-header-animated::before {
@@ -56,9 +62,8 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 40%, rgba(242, 166, 90, 0.25) 0%, rgba(242, 166, 90, 0) 58%),
-    radial-gradient(circle at 20% 20%, rgba(95, 161, 214, 0.28) 0%, rgba(95, 161, 214, 0) 55%);
-  opacity: 0.9;
+  background: radial-gradient(circle at 50% 40%, rgba(14, 36, 51, 0) 0%, rgba(14, 36, 51, 0.45) 78%);
+  opacity: 1;
 }
 
 .bf-header-animated .bf-header-animated__panel {
@@ -73,12 +78,12 @@
 
 .bf-header-animated .bf-header-animated__panel.left {
   left: 0;
-  background: var(--color-navy);
+  background: transparent;
 }
 
 .bf-header-animated .bf-header-animated__panel.right {
   right: 0;
-  background: var(--color-primary);
+  background: transparent;
 }
 
 .bf-header-animated .bf-header-animated__container {

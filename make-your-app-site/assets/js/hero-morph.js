@@ -44,7 +44,11 @@
   }
 
   function scaleStepPathsToMatch(stepPaths, targetPaths, options = {}) {
-    const indices = options.indices ?? [0, 1, 2, 3];
+    const indices =
+      options.indices ??
+      Array.from({ length: Math.max(stepPaths.length, targetPaths.length) }, (_, index) => index).filter(
+        (index) => Boolean(stepPaths[index]?.morphPoints) && Boolean(targetPaths[index]?.morphPoints),
+      );
     const targetBBox = computeUnionBBox(indices.map((i) => targetPaths[i]?.morphPoints ?? null));
     const sourceBBox = computeUnionBBox(indices.map((i) => stepPaths[i]?.morphPoints ?? null));
     if (!targetBBox || !sourceBBox) return;
