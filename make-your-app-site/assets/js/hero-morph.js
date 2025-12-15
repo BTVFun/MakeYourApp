@@ -1,9 +1,29 @@
 (() => {
   const MORPH_DURATION_MS = 800;
   const HOLD_DURATION_MS = 1500;
+  const OPACITY_OUT_DURATION_MS = 180;
 
   const prefersReducedMotion = () =>
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateOpacity(element, targetOpacity) {
+    if (!element || targetOpacity === null) return;
+
+    const currentAttr = element.attr('opacity');
+    let fromOpacity = Number.parseFloat(currentAttr);
+
+    if (!Number.isFinite(fromOpacity)) {
+      const computed = window.getComputedStyle?.(element.node)?.opacity;
+      fromOpacity = Number.parseFloat(computed);
+    }
+
+    if (!Number.isFinite(fromOpacity)) fromOpacity = targetOpacity === 1 ? 0 : 1;
+
+    const duration = targetOpacity === 0 ? OPACITY_OUT_DURATION_MS : MORPH_DURATION_MS;
+    const easing = targetOpacity === 0 ? mina.easeout : mina.easeinout;
+
+    Snap.animate(fromOpacity, targetOpacity, (value) => element.attr({ opacity: value }), duration, easing);
+  }
 
   function computeUnionBBox(pathStrings) {
     let minX = Number.POSITIVE_INFINITY;
@@ -114,9 +134,9 @@
     const morphPoints = getMorphPoints(morphArray, 0, iteration);
     if (!morphArray[0][iteration]?.animation || !morphPoints) return;
     const targetOpacity = getTargetOpacityForStep(morphArray, 0, iteration);
-    const attrs = targetOpacity === null ? { d: morphPoints } : { d: morphPoints, opacity: targetOpacity };
+    if (targetOpacity !== null) animateOpacity(morphArray[0][iteration].animation, targetOpacity);
     morphArray[0][iteration].animation.animate(
-      attrs,
+      { d: morphPoints },
       MORPH_DURATION_MS,
       mina.easeinout,
       () => setTimeout(() => animationStep2(morphArray, iteration), HOLD_DURATION_MS),
@@ -127,9 +147,9 @@
     const morphPoints = getMorphPoints(morphArray, 1, iteration);
     if (!morphArray[0][iteration]?.animation || !morphPoints) return;
     const targetOpacity = getTargetOpacityForStep(morphArray, 1, iteration);
-    const attrs = targetOpacity === null ? { d: morphPoints } : { d: morphPoints, opacity: targetOpacity };
+    if (targetOpacity !== null) animateOpacity(morphArray[0][iteration].animation, targetOpacity);
     morphArray[0][iteration].animation.animate(
-      attrs,
+      { d: morphPoints },
       MORPH_DURATION_MS,
       mina.easeinout,
       () => setTimeout(() => animationStep3(morphArray, iteration), HOLD_DURATION_MS),
@@ -140,9 +160,9 @@
     const morphPoints = getMorphPoints(morphArray, 2, iteration);
     if (!morphArray[0][iteration]?.animation || !morphPoints) return;
     const targetOpacity = getTargetOpacityForStep(morphArray, 2, iteration);
-    const attrs = targetOpacity === null ? { d: morphPoints } : { d: morphPoints, opacity: targetOpacity };
+    if (targetOpacity !== null) animateOpacity(morphArray[0][iteration].animation, targetOpacity);
     morphArray[0][iteration].animation.animate(
-      attrs,
+      { d: morphPoints },
       MORPH_DURATION_MS,
       mina.easeinout,
       () => setTimeout(() => animationStep1(morphArray, iteration), HOLD_DURATION_MS),
