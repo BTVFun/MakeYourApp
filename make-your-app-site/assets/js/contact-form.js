@@ -1,4 +1,4 @@
-export function initContactForm() {
+function initContactForm() {
   const form = document.querySelector('.contact-form');
   if (!form) return;
 

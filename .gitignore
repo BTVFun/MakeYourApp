@@ -1,0 +1,36 @@
+# OS / explorer files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node / front-end tooling (if added later)
+node_modules/
+.parcel-cache/
+.cache/
+.vite/
+dist/
+build/
+coverage/
+
+# Env files (secrets)
+.env
+.env.*
+
+# Large local assets (avoid Codex snapshot warnings)
+make-your-app-site/assets/img/img_hero/coup-moyen-smiley-femme-tenant-un-telephone.jpg
+make-your-app-site/assets/img/img_hero/femme-affaires-debout-utilisation-telephone-portable.jpg
+make-your-app-site/assets/img/img_hero/homme-a-l-aide-d-ordinateur-portable-sur-le-canape.jpg
+
